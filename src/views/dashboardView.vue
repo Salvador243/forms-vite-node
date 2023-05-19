@@ -14,7 +14,7 @@ const downloadFile = () => {
 </script>
 <template>
     <div class="uk-container uk-container-xsmall">
-        <button class="uk-button uk-button-danger" type="button" @click="downloadFile">Descargar</button>
+        <button class="uk-button uk-button-danger" type="button" @click="downloadFile">Descargar todos en XLSX</button>
         <table class="uk-table uk-table-middle uk-table-divider">
             <thead>
                 <tr>

@@ -93,179 +93,229 @@ const isRequiredFieldEmpty = computed(() => {
         religious_ceremony_message.value &&
         reception_message.value &&
         whatsapp_phone.value &&
-        gallery_photo_1.value &&
-        gallery_photo_2.value &&
-        gallery_photo_3.value &&
-        gallery_photo_4.value &&
-        gallery_photo_5.value &&
-        gallery_photo_6.value &&
-        main_photo.value
+        images.value[1] &&
+        images.value[2] &&
+        images.value[3] &&
+        images.value[4] &&
+        images.value[5] &&
+        images.value[6] &&
+        images.value[7]
 });
 
 </script>
 
 <template>
     <div class="uk-container uk-container-xsmall">
-        <form @submit.prevent="submitForm" class="uk-form-stacked uk-margin-xlarge-top uk-margin-large-bottom">
+        <div class="uk-text-center" uk-parallax="start: 100%; end: 100%; stroke: 100%;">
+            <img src="../assets/images/banner.webp">
+        </div>
+        <form @submit.prevent="submitForm" class="uk-form-stacked uk-margin-top uk-margin-large-bottom">
             <div>
-                <label for="" class="uk-form-label uk-text-bold uk-text-uppercase">Tipo de evento</label>
-                <div class="uk-form-controls">
-                    <label class="uk-margin-medium-right"><input class="uk-radio" type="radio" v-model="type_event"
-                            value="1">
-                        XV años
-                    </label>
-                    <label class="uk-margin-medium-right"><input class="uk-radio" type="radio" v-model="type_event"
-                            value="2">
-                        Boda
-                    </label>
-                    <label class="uk-margin-medium-right"><input class="uk-radio" type="radio" v-model="type_event"
-                            value="3">
-                        Cumpleaños
-                    </label>
-                    <label class="uk-margin-medium-right"><input class="uk-radio" type="radio" v-model="type_event"
-                            value="4">
-                        Bautizo
-                    </label>
-                    <label class="uk-margin-medium-right"><input class="uk-radio" type="radio" v-model="type_event"
-                            value="5">
-                        Revelación
-                    </label>
-                    <label class="uk-margin-medium-right"><input class="uk-radio" type="radio" v-model="type_event"
-                            value="6">
-                        Graduación
-                    </label>
-                    <label class="uk-margin-medium-right"><input class="uk-radio" type="radio" v-model="type_event"
-                            value="7">
-                        Posada
-                    </label>
+                <div>
+                    <div class="uk-card uk-card-default uk-card-body">
+                        <h3 class="uk-card-title">Tipo de evento</h3>
+                        <div class="uk-form-controls">
+                            <label class="uk-margin-medium-right"><input class="uk-radio color-orange" type="radio"
+                                    v-model="type_event" value="1">
+                                XV años
+                            </label>
+                            <label class="uk-margin-medium-right"><input class="uk-radio" type="radio" v-model="type_event"
+                                    value="2">
+                                Boda
+                            </label>
+                            <label class="uk-margin-medium-right"><input class="uk-radio" type="radio" v-model="type_event"
+                                    value="3">
+                                Cumpleaños
+                            </label>
+                            <label class="uk-margin-medium-right"><input class="uk-radio" type="radio" v-model="type_event"
+                                    value="4">
+                                Bautizo
+                            </label>
+                            <label class="uk-margin-medium-right"><input class="uk-radio" type="radio" v-model="type_event"
+                                    value="5">
+                                Revelación
+                            </label>
+                            <label class="uk-margin-medium-right"><input class="uk-radio" type="radio" v-model="type_event"
+                                    value="6">
+                                Graduación
+                            </label>
+                            <label class="uk-margin-medium-right"><input class="uk-radio" type="radio" v-model="type_event"
+                                    value="7">
+                                Posada
+                            </label>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="uk-margin-top">
-                <label for="" class="uk-form-label uk-text-bold uk-text-uppercase">Nombre del festajad@</label>
-                <input type="text" class="uk-input" v-model="attende_name">
-            </div>
-            <div class="uk-margin-top">
-                <label for="" class="uk-form-label uk-text-bold uk-text-uppercase">Fecha del evento</label>
-                <input type="date" class="uk-input" v-model="event_date">
-            </div>
-            <div class="uk-margin-top">
-                <label for="" class="uk-form-label uk-text-bold uk-text-uppercase">Hora de ceremonia religiosa</label>
-                <input type="time" class="uk-input" v-model="religious_ceremony_time">
-            </div>
-            <div class="uk-margin-top">
-                <label for="" class="uk-form-label uk-text-bold uk-text-uppercase">Hora de la recepción</label>
-                <input type="time" class="uk-input" v-model="reception_time">
-            </div>
-            <div class="uk-margin-top">
-                <label for="" class="uk-form-label uk-text-bold uk-text-uppercase">Dirección Ceremonia religiosa</label>
-                <input type="text" class="uk-input" v-model="religious_ceremony_address">
-            </div>
-            <div class="uk-margin-top">
-                <label for="" class="uk-form-label uk-text-bold uk-text-uppercase">Dirección recepción.</label>
-                <input type="text" class="uk-input" v-model="reception_address">
-            </div>
-            <div class="uk-margin-top">
-                <label for="" class="uk-form-label uk-text-bold uk-text-uppercase">Mensaje especial para ceremonia
-                    religiosa</label>
-                <input type="text" class="uk-input" v-model="religious_ceremony_message">
-            </div>
-            <div class="uk-margin-top">
-                <label for="" class="uk-form-label uk-text-bold uk-text-uppercase">Mensaje especial para la
-                    recepción</label>
-                <input type="text" class="uk-input" v-model="reception_message">
-            </div>
-            <div class="uk-margin-top">
-                <label for="" class="uk-form-label uk-text-bold uk-text-uppercase">Foto principal Formato JPG, PNG</label>
-                <div uk-form-custom>
-                    <input accept="image/*" type="file" aria-label="Custom controls"
-                        @change="(event) => handleFileChange(event, 7)" ref="main_photo">
-                    <button class="uk-button uk-button-default" type="button" tabindex="-1">Foto principal Formato
-                        JPG, PNG</button>
+                <div>
+                    <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-margin-top">
+                        <h3 class="uk-card-title">Nombre del festajad@</h3>
+                        <input type="text" class="uk-input" v-model="attende_name">
+                    </div>
                 </div>
-                <img class="image-prev" :style="images[7] ? 'display:block;' : 'display:none'" :src="images[7]" />
-            </div>
-            <div class="uk-margin-top">
-                <label for="" class="uk-form-label uk-text-bold uk-text-uppercase">Foto Galeria 1 Formato JPG, PNG</label>
-                <div uk-form-custom>
-                    <input accept="image/*" type="file" aria-label="Custom controls"
-                        @change="(event) => handleFileChange(event, 1)" ref="gallery_photo_1">
-                    <button class="uk-button uk-button-default" type="button" tabindex="-1">Foto Galeria 1 Formato
-                        JPG, PNG</button>
+                <div>
+                    <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-margin-top">
+                        <h3 class="uk-card-title">Fecha del evento</h3>
+                        <input type="date" class="uk-input" v-model="event_date">
+                    </div>
                 </div>
-                <img class="image-prev" :style="images[1] ? 'display:block;' : 'display:none'" :src="images[1]" />
-            </div>
-            <div class="uk-margin-top">
-                <label for="" class="uk-form-label uk-text-bold uk-text-uppercase">Foto Galeria 2 Formato JPG, PNG</label>
-                <div uk-form-custom>
-                    <input accept="image/*" type="file" aria-label="Custom controls"
-                        @change="(event) => handleFileChange(event, 2)" ref="gallery_photo_2">
-                    <button class="uk-button uk-button-default" type="button" tabindex="-1">Foto Galeria 2 Formato
-                        JPG, PNG</button>
+                <div>
+                    <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-margin-top">
+                        <h3 class="uk-card-title">Hora de ceremonia religiosa</h3>
+                        <input type="time" class="uk-input" v-model="religious_ceremony_time">
+                    </div>
                 </div>
-                <img class="image-prev" :style="images[2] ? 'display:block;' : 'display:none'" :src="images[2]" />
-            </div>
-            <div class="uk-margin-top">
-                <label for="" class="uk-form-label uk-text-bold uk-text-uppercase">Foto Galeria 3 Formato JPG, PNG</label>
-                <div uk-form-custom>
-                    <input accept="image/*" type="file" aria-label="Custom controls"
-                        @change="(event) => handleFileChange(event, 3)" ref="gallery_photo_3">
-                    <button class="uk-button uk-button-default" type="button" tabindex="-1">Foto Galeria 3 Formato
-                        JPG, PNG</button>
+                <div>
+                    <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-margin-top">
+                        <h3 class="uk-card-title">Hora de la recepción</h3>
+                        <input type="time" class="uk-input" v-model="reception_time">
+                    </div>
                 </div>
-                <img class="image-prev" :style="images[3] ? 'display:block;' : 'display:none'" :src="images[3]" />
-            </div>
-            <div class="uk-margin-top">
-                <label for="" class="uk-form-label uk-text-bold uk-text-uppercase">Foto Galeria 4 Formato JPG, PNG</label>
-                <div uk-form-custom>
-                    <input accept="image/*" type="file" aria-label="Custom controls"
-                        @change="(event) => handleFileChange(event, 4)" ref="gallery_photo_4">
-                    <button class="uk-button uk-button-default" type="button" tabindex="-1">Foto Galeria 4 Formato
-                        JPG, PNG</button>
+                <div>
+                    <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-margin-top">
+                        <h3 class="uk-card-title">Dirección Ceremonia religiosa</h3>
+                        <input type="text" class="uk-input" v-model="religious_ceremony_address">
+                    </div>
                 </div>
-                <img class="image-prev" :style="images[4] ? 'display:block;' : 'display:none'" :src="images[4]" />
-            </div>
-            <div class="uk-margin-top">
-                <label for="" class="uk-form-label uk-text-bold uk-text-uppercase">Foto Galeria 5 Formato JPG, PNG</label>
-                <div uk-form-custom>
-                    <input accept="image/*" type="file" aria-label="Custom controls"
-                        @change="(event) => handleFileChange(event, 5)" ref="gallery_photo_5">
-                    <button class="uk-button uk-button-default" type="button" tabindex="-1">Foto Galeria 5 Formato
-                        JPG, PNG</button>
+                <div>
+                    <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-margin-top">
+                        <h3 class="uk-card-title">Dirección recepción</h3>
+                        <input type="text" class="uk-input" v-model="reception_address">
+                    </div>
                 </div>
-                <img class="image-prev" :style="images[5] ? 'display:block;' : 'display:none'" :src="images[5]" />
-            </div>
-            <div class="uk-margin-top">
-                <label for="" class="uk-form-label uk-text-bold uk-text-uppercase">Foto Galeria 6 Formato JPG, PNG</label>
-                <div uk-form-custom>
-                    <input accept="image/*" type="file" aria-label="Custom controls"
-                        @change="(event) => handleFileChange(event, 6)" ref="gallery_photo_6">
-                    <button class="uk-button uk-button-default" type="button" tabindex="-1">Foto Galeria 6 Formato
-                        JPG, PNG</button>
+                <div>
+                    <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-margin-top">
+                        <h3 class="uk-card-title">Mensaje especial para ceremonia religiosa</h3>
+                        <input type="text" class="uk-input" v-model="religious_ceremony_message">
+                    </div>
                 </div>
-                <img class="image-prev" :style="images[6] ? 'display:block;' : 'display:none'" :src="images[6]" />
-            </div>
-            <div class="uk-margin-top">
-                <label for="" class="uk-form-label uk-text-bold uk-text-uppercase">Video corta duración Formato MP4
-                    (opcional)</label>
-                <div uk-form-custom>
-                    <input type="file" aria-label="Custom controls" accept="video/mp4" ref="video">
-                    <button class="uk-button uk-button-default" type="button" tabindex="-1">Video corto .MP4</button>
+                <div>
+                    <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-margin-top">
+                        <h3 class="uk-card-title">Mensaje especial para la recepción</h3>
+                        <input type="text" class="uk-input" v-model="reception_message">
+                    </div>
                 </div>
-            </div>
-            <div class="uk-margin-top">
-                <label for="" class="uk-form-label uk-text-bold uk-text-uppercase">Canción Formato MP3 (opcional)</label>
-                <div uk-form-custom>
-                    <input type="file" aria-label="Custom controls" accept="audio/mp3" ref="song">
-                    <button class="uk-button uk-button-default" type="button" tabindex="-1">Canción .MP3</button>
+                <div>
+                    <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-margin-top">
+                        <h3 class="uk-card-title">Foto principal Formato JPG, PNG</h3>
+                        <div uk-form-custom>
+                            <input accept="image/*" type="file" aria-label="Custom controls"
+                                @change="(event) => handleFileChange(event, 7)" ref="main_photo">
+                            <button class="uk-button uk-button-primary" type="button" tabindex="-1">Foto principal
+                                Formato
+                                JPG, PNG</button>
+                        </div>
+                        <img class="image-prev" :style="images[7] ? 'display:block;' : 'display:none'" :src="images[7]" />
+                    </div>
                 </div>
+                <div>
+                    <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-margin-top">
+                        <h3 class="uk-card-title">Foto Galeria 1 Formato JPG, PNG</h3>
+                        <div uk-form-custom>
+                            <input accept="image/*" type="file" aria-label="Custom controls"
+                                @change="(event) => handleFileChange(event, 1)" ref="gallery_photo_1">
+                            <button class="uk-button uk-button-primary" type="button" tabindex="-1">Foto Galeria 1
+                                Formato
+                                JPG, PNG</button>
+                        </div>
+                        <img class="image-prev" :style="images[1] ? 'display:block;' : 'display:none'" :src="images[1]" />
+
+                    </div>
+                </div>
+                <div>
+                    <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-margin-top">
+                        <h3 class="uk-card-title">Foto Galeria 2 Formato JPG, PNG</h3>
+                        <div uk-form-custom>
+                            <input accept="image/*" type="file" aria-label="Custom controls"
+                                @change="(event) => handleFileChange(event, 2)" ref="gallery_photo_2">
+                            <button class="uk-button uk-button-primary" type="button" tabindex="-1">Foto Galeria 2
+                                Formato
+                                JPG, PNG</button>
+                        </div>
+                        <img class="image-prev" :style="images[2] ? 'display:block;' : 'display:none'" :src="images[2]" />
+                    </div>
+                </div>
+                <div>
+                    <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-margin-top">
+                        <h3 class="uk-card-title">Foto Galeria 3 Formato JPG, PNG</h3>
+                        <div uk-form-custom>
+                            <input accept="image/*" type="file" aria-label="Custom controls"
+                                @change="(event) => handleFileChange(event, 3)" ref="gallery_photo_3">
+                            <button class="uk-button uk-button-primary" type="button" tabindex="-1">Foto Galeria 3
+                                Formato
+                                JPG, PNG</button>
+                        </div>
+                        <img class="image-prev" :style="images[3] ? 'display:block;' : 'display:none'" :src="images[3]" />
+
+                    </div>
+                </div>
+                <div>
+                    <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-margin-top">
+                        <h3 class="uk-card-title">Foto Galeria 4 Formato JPG, PNG</h3>
+                        <div uk-form-custom>
+                            <input accept="image/*" type="file" aria-label="Custom controls"
+                                @change="(event) => handleFileChange(event, 4)" ref="gallery_photo_4">
+                            <button class="uk-button uk-button-primary" type="button" tabindex="-1">Foto Galeria 4
+                                Formato
+                                JPG, PNG</button>
+                        </div>
+                        <img class="image-prev" :style="images[4] ? 'display:block;' : 'display:none'" :src="images[4]" />
+                    </div>
+                </div>
+                <div>
+                    <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-margin-top">
+                        <h3 class="uk-card-title">Foto Galeria 5 Formato JPG, PNG</h3>
+                        <div uk-form-custom>
+                            <input accept="image/*" type="file" aria-label="Custom controls"
+                                @change="(event) => handleFileChange(event, 5)" ref="gallery_photo_5">
+                            <button class="uk-button uk-button-primary" type="button" tabindex="-1">Foto Galeria 5
+                                Formato
+                                JPG, PNG</button>
+                        </div>
+                        <img class="image-prev" :style="images[5] ? 'display:block;' : 'display:none'" :src="images[5]" />
+                    </div>
+                </div>
+                <div>
+                    <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-margin-top">
+                        <h3 class="uk-card-title">Foto Galeria 6 Formato JPG, PNG</h3>
+                        <div uk-form-custom>
+                            <input accept="image/*" type="file" aria-label="Custom controls"
+                                @change="(event) => handleFileChange(event, 6)" ref="gallery_photo_6">
+                            <button class="uk-button uk-button-primary" type="button" tabindex="-1">Foto Galeria 6
+                                Formato
+                                JPG, PNG</button>
+                        </div>
+                        <img class="image-prev" :style="images[6] ? 'display:block;' : 'display:none'" :src="images[6]" />
+                    </div>
+                </div>
+                <div>
+                    <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-margin-top">
+                        <h3 class="uk-card-title">Video corta duración Formato MP4 (opcional)</h3>
+                        <div uk-form-custom>
+                            <input type="file" aria-label="Custom controls" accept="video/mp4" ref="video">
+                            <button class="uk-button uk-button-primary" type="button" tabindex="-1">Video corto
+                                .MP4</button>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-margin-top">
+                        <h3 class="uk-card-title">Canción Formato MP3 (opcional)</h3>
+                        <div uk-form-custom>
+                            <input type="file" aria-label="Custom controls" accept="audio/mp3" ref="song">
+                            <button class="uk-button uk-button-primary" type="button" tabindex="-1">Canción
+                                .MP3</button>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-margin-top">
+                        <h3 class="uk-card-title">Teléfono con whatsapp para confirmar asistencia.</h3>
+                        <input type="text" class="uk-input" v-model="whatsapp_phone">
+                    </div>
+                </div>
+                <button class="uk-button uk-button-primary uk-margin-top" type="submit"
+                    :disabled="!isRequiredFieldEmpty">Enviar</button>
             </div>
-            <div class="uk-margin-top">
-                <label for="" class="uk-form-label uk-text-bold uk-text-uppercase">Teléfono con whatsapp para confirmar
-                    asistencia.</label>
-                <input type="text" class="uk-input" v-model="whatsapp_phone">
-            </div>
-            <button class="uk-button uk-button-primary uk-margin-top" type="submit"
-                :disabled="!isRequiredFieldEmpty">Enviar</button>
         </form>
     </div>
 </template>
