@@ -44,7 +44,7 @@ CREATE TABLE `form` (
   `whatsapp_phone` text,
   `attendee_name` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -53,6 +53,7 @@ CREATE TABLE `form` (
 
 LOCK TABLES `form` WRITE;
 /*!40000 ALTER TABLE `form` DISABLE KEYS */;
+INSERT INTO `form` VALUES (1,'4','2023-05-18','12:03:00','02:59:00','.value','.value','.value','.value','src/assets/9931016423/main_photo_1684506537055-891471026.png','src/assets/9931016423/gallery_photo_1684506536973-613956187.png','src/assets/9931016423/gallery_photo_1684506536986-414752684.png','src/assets/9931016423/gallery_photo_1684506536987-700559171.png','src/assets/9931016423/gallery_photo_1684506536998-738982247.png','src/assets/9931016423/gallery_photo_1684506536999-775636290.png','src/assets/9931016423/gallery_photo_1684506537052-843894200.png','undefined','undefined','9931016423','0000'),(2,'2','2023-10-10','10:00:00','12:00:00','aqui','otra ','hola','hola hola','src/assets/9931019845/main_photo_1684515558272-718268217.png','src/assets/9931019845/gallery_photo_1684515558188-659360088.png','src/assets/9931019845/gallery_photo_1684515558193-210771898.png','src/assets/9931019845/gallery_photo_1684515558199-398995755.png','src/assets/9931019845/gallery_photo_1684515558207-359794266.png','src/assets/9931019845/gallery_photo_1684515558269-194132453.png','src/assets/9931019845/gallery_photo_1684515558270-18981744.png','src/assets/9931019845/video_1684515558276-86187797.mp4','src/assets/9931019845/song_1684515558390-991336150.mp3','9931019845','Otro festejado');
 /*!40000 ALTER TABLE `form` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -65,4 +66,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-19  1:25:31
+-- Dump completed on 2023-05-19 17:54:21
