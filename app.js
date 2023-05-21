@@ -275,6 +275,27 @@ app.get("/d/:id", async (req, res) => {
     }
 });
 
+app.post("/login", async (req, res) => {
+    const { username, password } = req.body;
+
+    let query = `SELECT * FROM users WHERE username = ? AND password = ?`;
+
+    try {
+        const connection = await createConnection();
+        const [results] = await connection.query(query, [username, password]);
+        connection.end();
+        if (results.length > 0) {
+            res.status(200).send(true);
+        } else {
+            res.status(401).send(false);
+        }
+    } catch (error) {
+        console.error('Error al ejecutar la consulta:', error);
+        Object.keys(body).forEach(key => delete body[key]);
+        res.status(500).send('Error en el servidor');
+    }
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Servidor API escuchando en el puerto ${PORT}`);

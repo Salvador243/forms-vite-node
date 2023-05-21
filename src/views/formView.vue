@@ -1,6 +1,10 @@
 <script setup>
 import { ref, computed } from 'vue';
+import { useSession } from '../store/useSession';
 import axios from 'axios';
+
+const session = useSession();
+const isActive = session.active;
 
 const type_event = ref('');
 const attende_name = ref('');
@@ -21,6 +25,13 @@ const gallery_photo_6 = ref('');
 const main_photo = ref('');
 const video = ref('');
 const song = ref('');
+const site_web = ref('');
+const recaptchaContainer = ref(null);
+
+window.recaptchaCallback = function (response) {
+    site_web.value = response;
+};
+
 
 const images = ref({
     1: "",
@@ -59,13 +70,37 @@ const submitForm = async (event) => {
 
         try {
             // Realiza la solicitud HTTP POST a la API de Node.js usando Axios
-            const response = await axios.post('http://localhost:3000/register', formData);
-            console.log(response.data); // Maneja la respuesta del servidor
+            const response = await axios.post('http://localhost:3000/register', formData).then(res => {
+
+            }).finally(() => {
+                type_event.value = '';
+                attende_name.value = '';
+                event_date.value = '';
+                religious_ceremony_time.value = '';
+                reception_time.value = '';
+                religious_ceremony_address.value = '';
+                reception_address.value = '';
+                religious_ceremony_message.value = '';
+                reception_message.value = '';
+                whatsapp_phone.value = '';
+                gallery_photo_1.value = '';
+                gallery_photo_2.value = '';
+                gallery_photo_3.value = '';
+                gallery_photo_4.value = '';
+                gallery_photo_5.value = '';
+                gallery_photo_6.value = '';
+                main_photo.value = '';
+                video.value = '';
+                song.value = '';
+                site_web.value = '';
+
+                if (recaptchaContainer.value) {
+                    grecaptcha.reset(recaptchaContainer.value);
+                }
+            });
         } catch (error) {
             console.error(error); // Maneja los errores
         }
-    } else {
-        alert(2)
     }
 };
 
@@ -83,7 +118,8 @@ const handleFileChange = (event, id) => {
 
 // Función computada para verificar si al menos uno de los campos requeridos está vacío
 const isRequiredFieldEmpty = computed(() => {
-    return type_event.value &&
+    return site_web.value &&
+        type_event.value &&
         attende_name.value &&
         event_date.value &&
         religious_ceremony_time.value &&
@@ -109,6 +145,8 @@ const isRequiredFieldEmpty = computed(() => {
         <div class="uk-text-center" uk-parallax="start: 100%; end: 100%; stroke: 100%;">
             <img src="../assets/images/banner.webp">
         </div>
+        <router-link v-if="isActive" to="/dashboard" class="uk-margin-small-top uk-button uk-button-danger">IR AL
+            DASHBOARD</router-link>
         <form @submit.prevent="submitForm" class="uk-form-stacked uk-margin-top uk-margin-large-bottom">
             <div>
                 <div>
@@ -313,6 +351,11 @@ const isRequiredFieldEmpty = computed(() => {
                         <input type="text" class="uk-input" v-model="whatsapp_phone">
                     </div>
                 </div>
+                <div class="uk-margin-top">
+                    <div class="g-recaptcha" data-sitekey="6LeKpiUmAAAAANz9w_6P8ZRRUVQru6gCVxSnD2nC"
+                        data-callback="recaptchaCallback" ref="recaptchaContainer"></div>
+                </div>
+
                 <button class="uk-button uk-button-primary uk-margin-top" type="submit"
                     :disabled="!isRequiredFieldEmpty">Enviar</button>
             </div>
